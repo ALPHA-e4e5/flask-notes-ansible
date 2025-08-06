@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Mohamad Fawzi
+  description: A role to deploy a Flask note app
+  company
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 8
+        - 9
+  galaxy_tags:
+    - flask
+    - web
+    - sqlite
+    - nginx
+    - notes
+
+dependencies: []
