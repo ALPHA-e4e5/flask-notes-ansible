@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn instance to serve Flask App
+After=network.target
+
+[Service]
+User={{ flaskapp_user }}
+Group={{ flaskapp_user }}
+WorkingDirectory={{ flaskapp_app_dir }}
+ExecStart=/usr/bin/python3 {{ flaskapp_app_dir }}/app.py
+
+[Install]
+WantedBy=multi-user.target

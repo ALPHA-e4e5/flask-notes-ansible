@@ -1,0 +1,5 @@
+- name: Deploy Flask Note App
+  hosts: flaskapp
+  become: yes
+  roles:
+    - flask_noteapp

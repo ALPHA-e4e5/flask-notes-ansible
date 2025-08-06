@@ -1,0 +1,6 @@
+flaskapp_user: flask
+flaskapp_app_dir: /opt/flaskapp
+flaskapp_repo: ""
+flaskapp_branch: ""
+flaskapp_host: "0.0.0.0"
+flaskapp_port: 5000
