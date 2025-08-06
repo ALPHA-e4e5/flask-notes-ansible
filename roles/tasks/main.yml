@@ -1,0 +1,57 @@
+- name: Ensure python3 is installed
+  yum:
+    name: python3
+    state: present
+    
+- name: Install pip3
+  package:
+    name: python3-pip
+    state: present
+    
+- name: Ensure flask user exists
+  user:
+    name: "{{ flaskapp_user }}"
+    state: present
+    create_home: yes
+
+- name: Copy app files
+  copy:
+    src: noteapp/
+    dest: "{{ flaskapp_app_dir }}/"
+    owner: "{{ flaskapp_user }}"
+    group: "{{ flaskapp_user }}"
+    mode: 0755
+
+- name: Install Flask
+  pip:
+    name: flask
+    executable: pip3
+
+- name: Create systemd service
+  template:
+    src: flaskapp.service.j2
+    dest: /etc/systemd/system/flaskapp.service
+  notify: restart flaskapp
+
+- name: Enable and start flaskapp
+  systemd:
+    name: flaskapp
+    enabled: yes
+    state: started
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Configure Nginx as reverse proxy
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/flaskapp.conf
+  notify: restart nginx
+
+- name: Ensure Nginx is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
