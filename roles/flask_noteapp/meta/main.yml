@@ -1,19 +1,21 @@
 galaxy_info:
-  author: Mohamad Fawzi
-  description: A role to deploy a Flask note app
-  company
+  author: ALPHA-e4e5
+  description: A role to deploy a Flask note-taking app with SQLite and Nginx reverse proxy.
   license: MIT
   min_ansible_version: 2.9
+
   platforms:
     - name: EL
       versions:
         - 8
         - 9
+
   galaxy_tags:
     - flask
     - web
     - sqlite
     - nginx
     - notes
+    - ansible
 
 dependencies: []
